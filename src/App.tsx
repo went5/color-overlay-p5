@@ -85,6 +85,7 @@ export default function App() {
     );
     p.fill("#000");
 
+    // rgb text
     p.textSize(p.width / 40);
     p.text(
       `(${data[0].Color1.r},${data[0].Color1.g},${data[0].Color1.b})`,
