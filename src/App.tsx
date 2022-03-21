@@ -23,9 +23,18 @@ const ReverseMathColor = (c1: Color) => {
 
 const Overlay = (c1: Color, c2: Color) => {
   return {
-    r: c1.r < 128 ? c1.r * c2.r * 2 : 2 * (c1.r + c2.r - c1.r * c2.r),
-    g: c1.g < 128 ? c1.g * c2.g * 2 : 2 * (c1.g + c2.g - c1.g * c2.g),
-    b: c1.b < 128 ? c1.b * c2.b * 2 : 2 * (c1.b + c2.b - c1.b * c2.b)
+    r: Math.min(
+      c1.r < 0.5 ? c1.r * c2.r * 2 : 2 * (c1.r + c2.r - c1.r * c2.r),
+      1
+    ),
+    g: Math.min(
+      c1.g < 0.5 ? c1.g * c2.g * 2 : 2 * (c1.g + c2.g - c1.g * c2.g),
+      1
+    ),
+    b: Math.min(
+      c1.b < 0.5 ? c1.b * c2.b * 2 : 2 * (c1.b + c2.b - c1.b * c2.b),
+      1
+    )
   };
 };
 
