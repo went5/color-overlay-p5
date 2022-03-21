@@ -17,11 +17,11 @@ const ReverseMathColor = (c1: Color) => {
   return { r: c1.r * 255, g: c1.g * 255, b: c1.b * 255 };
 };
 
-const Screen = (c1: Color, c2: Color) => {
+const Overlay = (c1: Color, c2: Color) => {
   return {
-    r: c1.r + c2.r - c1.r * c2.r,
-    g: c1.g + c2.g - c1.g * c2.g,
-    b: c1.b + c2.b - c1.b * c2.b
+    r: c1.r < 128 ? c1.r * c2.r * 2 : 2 * (c1.r + c2.r - c1.r * c2.r),
+    g: c1.g < 128 ? c1.g * c2.g * 2 : 2 * (c1.g + c2.g - c1.g * c2.g),
+    b: c1.b < 128 ? c1.b * c2.b * 2 : 2 * (c1.b + c2.b - c1.b * c2.b)
   };
 };
 
@@ -70,7 +70,7 @@ export default function App() {
     );
 
     const resultColor = ReverseMathColor(
-      Screen(MathColor(data[0].Color1), MathColor(data[0].Color2))
+      Overlay(MathColor(data[0].Color1), MathColor(data[0].Color2))
     );
     p.fill(resultColor.r, resultColor.g, resultColor.b);
     p.rect(
